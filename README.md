@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+### 1. BrowserRouter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`BrowserRouter`는 HTML5의 History API를 사용하여 URL과 UI 상태를 동기화하는 라우터입니다.
 
-## Available Scripts
+ 애플리케이션의 라우팅을 설정하기 위해 루트 컴포넌트로 사용합니다.
 
-In the project directory, you can run:
+- **설명**
+    - **`BrowserRouter` 는 라우팅을 위해 전체 애플리케이션을 감싸는 최상위 컴포넌트입니다.**
+    - 이것을 사용하면 애플리케이션이 클라이언트 사이드 라우팅을 사용할 수 있습니다.
+- **예시**
+    
+    ```jsx
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import { BrowserRouter } from 'react-router-dom';
+    import App from './App';
+    
+    ReactDOM.render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+      document.getElementById('root')
+    );
+    ```
+    
 
-### `npm start`
+### 2. Routes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`Routes`는 React Router v6에서 새로운 컴포넌트로, 여러 `Route`를 그룹화하여 처리합니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ 이전 버전의 `Switch` 컴포넌트를 대체합니다.
 
-### `npm test`
+- **설명**
+    - **`Routes` 컴포넌트는 URL 경로에 따라 매칭되는 `Route` 컴포넌트를 렌더링합니다.**
+    - `Switch`와 달리 경로가 매칭되는 첫 번째 `Route`만 렌더링하지 않고, 정확히 일치하는 경로를 찾아 렌더링합니다.
+- **예시**
+    
+    ```jsx
+    import { Routes, Route } from 'react-router-dom';
+    import Home from './Home';
+    import About from './About';
+    
+    const App = () => {
+      return (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      );
+    };
+    
+    export default App;
+    ```
+    
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Route
 
-### `npm run build`
+`Route`는 URL 경로와 해당 경로가 매칭될 때 렌더링할 컴포넌트를 정의합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **설명**
+    - `Route` **컴포넌트는 특정 경로에 매칭될 때 렌더링할 컴포넌트를 지정합니다.**
+    - **`path` 속성에는 URL 경로를, `element` 속성에는 매칭될 때 렌더링할 컴포넌트를 지정합니다.**
+- **예시**
+    
+    ```jsx
+    import { Route } from 'react-router-dom';
+    import Home from './Home';
+    import About from './About';
+    
+    const App = () => {
+      return (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      );
+    };
+    
+    export default App;
+    ```
+    
