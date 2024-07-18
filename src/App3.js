@@ -21,7 +21,7 @@ function App3() {
                                 {
                                     v.split("|").map((vv, ii) => {
                                         return (
-                                            ii === 0 && <h2>{vv}</h2>
+                                            ii === 0 ? <h2>{vv}</h2> : <p>{vv}</p>
                                         )
                                     })
                                 }
