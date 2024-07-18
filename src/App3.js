@@ -18,7 +18,13 @@ function App3() {
                         tabjson[tabnm]["content"].map((v, i) =>{
                             return(
                             <li key={`list${i}`}>
-                                {v}
+                                {
+                                    v.split("|").map((vv, ii) => {
+                                        return (
+                                            ii === 0 && <h2>{vv}</h2>
+                                        )
+                                    })
+                                }
                             </li>
                             )
                         })
