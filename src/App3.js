@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import tabjson from './json/tab.json'
 
 function App3() {
+    const [ tabnm, setTabnm ] = useState('notice');
 
     return (
         <div className="tapwrap d-flex container border">
             <ul className="tabs border">
-                <li><button>{tabjson["notice"]["title"]}</button></li>
-                <li><button>{tabjson["gallery"]["title"]}</button></li>
-                <li><button>{tabjson["qna"]["title"]}</button></li>
+                <li><button onClick={ ()=>(setTabnm('notice')) }>{tabjson["notice"]["title"]}</button></li>
+                <li><button onClick={ ()=>(setTabnm('gallery')) }>{tabjson["gallery"]["title"]}</button></li>
+                <li><button onClick={ ()=>(setTabnm('qna')) }>{tabjson["qna"]["title"]}</button></li>
             </ul>
             <div className="content col border">
                 
                 <ul>
                     {
-                        tabjson["gallery"]["content"].map((v, i) =>{
+                        tabjson[tabnm]["content"].map((v, i) =>{
                             return(
                             <li key={`list${i}`}>
                                 {v}
