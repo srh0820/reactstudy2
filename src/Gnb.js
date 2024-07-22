@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom';
+
 import cafenavi from './json/cafenavi.json';
 
 function Gnb() {
@@ -8,18 +10,22 @@ function Gnb() {
             {
                 d1navi.map((v , i) =>{
                     return (
-                        <Fragment key={`gnbli${i}`}>
-                        <li className='px-3' key={`gnbnavi${i}`}>{v.gnbnm}</li>
-                        <ul>
-                            {
-                            cafenavi.filter((item)=> item.prnum === v.cateno ).map((vv, ii) => <li>{vv.gnbnm}</li>)                               
-                            } 
-                        </ul>
-                        </Fragment>
+                        <li className='px-3' key={`gnbnavi${i}`}>
+                            <Link to={v.gnblink}>{v.gnbnm}</Link>
+                            <ul>
+                                {
+                                    cafenavi.filter((item) => item.prnum === v.cateno).map((vv, ii) => (
+                                        <li key={`subgnbnavi${ii}`}>
+                                            <Link to={vv.gnblink}>{vv.gnbnm}</Link>
+                                        </li>
+                                    ))                               
+                                } 
+                            </ul>
+                        </li>   
                     )
                 })
             }            
-        </ul>       
+        </ul>
     )
 }
 
