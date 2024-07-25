@@ -5,6 +5,7 @@ function API() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [targetnum, setTargetnum] = useState(1);
 
   useEffect(() => {
     // API 호출 함수
@@ -45,7 +46,7 @@ function API() {
       <div>
         {
           uniqueAlbumIds.map(albumId => (
-            <button key={albumId} value={albumId}>
+            <button key={albumId} value={albumId} onClick={()=>{ setTargetnum(albumId); }}>
               Album {albumId}
             </button>
           ))
@@ -57,7 +58,7 @@ function API() {
       }
       { loading ? <p>Loading...</p> :
                   <ul style={{display:"flex",flexWrap :"wrap"}}>
-                      { users.filter((item) => item.albumId === 1 ).map(user => (
+                      { users.filter((item) => item.albumId === targetnum ).map(user => (
                               <li key={user.id} style={{width:"33%", listStyle:"none", padding : "0"}}>
                                     <h2 style={{fontSize : "16px"}}>{user.title}</h2> 
                                     <img src={user.thumbnailUrl}></img>                       
